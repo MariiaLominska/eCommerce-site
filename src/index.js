@@ -40,7 +40,7 @@ export default function App() {
         <div className="main">
           <Header
             searchTerm={searchTerm}
-            handleSearchChange={handleSearchChange}
+            handleSearchChange={setSearchTerm}
             amountFavorite={amountFavorite}
             amountCart={amountCart}
           />

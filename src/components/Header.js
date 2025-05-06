@@ -3,6 +3,8 @@ import basket from "../images/icons/basket.svg";
 import person from "../images/icons/person.svg";
 import heart from "../images/icons/heart.svg";
 import { Link } from "react-router-dom";
+import SearchPopupItem from "./SearchPopupItem";
+import womensClothes from "../data/data";
 
 export default function Header({
   searchTerm,
@@ -10,19 +12,48 @@ export default function Header({
   amountFavorite,
   amountCart,
 }) {
+  // попап закрывается, переписывая стейт поиска, чтобы, когда ничего в поиске не введено, и попапа не было
+  const closePopup = () => {
+    handleSearchChange("");
+  };
+
+  const filteredByCategory = womensClothes.find((item) =>
+    item.category[0].toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const filteredItems = womensClothes.filter((item) =>
+    item.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // если в поиске есть соответствие по названию категории, пушим в базу filteredItems первый же объект, который
+  // соответствует названию категории
+  if (filteredByCategory) {
+    filteredItems.push({ ...filteredByCategory, isCategory: true });
+  }
+
   return (
     <header className="header">
       <form className="search">
         <label className="search-label">
           <img className="search-icon" src={search} alt="Search" />
-          <input
-            className="search-input"
-            type="text"
-            placeholder="Search store"
-            value={searchTerm}
-            // когда в поиске что-то менятеся, вызываем функцию handleGenreChange, которая является state
-            onChange={handleSearchChange}
-          />
+          <div className="search-wrapper">
+            <input
+              className="search-input"
+              type="text"
+              placeholder="Search store"
+              value={searchTerm}
+              // если из-за попапа searchTerm становится строкой, в инпуте изменение стейта не срабыватывает,
+              // потому что инпут ждет ивент, а не строку, так что нужно в onChange вызвать функцию, сразу
+              // передавая ей ивент
+              onChange={(e) => handleSearchChange(e.target.value)}
+            />
+            <SearchPopupItem
+              womensClothes={filteredItems}
+              isOpenPopup={searchTerm}
+              closePopup={closePopup}
+              searchTerm={searchTerm}
+            />
+          </div>
         </label>
       </form>
       <nav className="nav-header">

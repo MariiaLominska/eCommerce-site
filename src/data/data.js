@@ -21,6 +21,12 @@ import ankle_chelsea_boots_black from "../images/items-photos/ankle_chelsea_boot
 import black_combat_boots from "../images/items-photos/black_combat_boots.jpg";
 import knee_high_boots from "../images/items-photos/knee_high_boots.webp";
 import heeled_ankle_boots from "../images/items-photos/heeled_ankle_boots.avif";
+import coats_category from "../images/items-photos/coats-category.jpg";
+import dress_category from "../images/items-photos/dress-category.jpg";
+import jeans_category from "../images/items-photos/jeans-category.avif";
+import pumps_category from "../images/items-photos/pumps-category.jpg";
+import sneakers_category from "../images/items-photos/sneakers-category.avif";
+import boots_category from "../images/items-photos/boots-category.webp";
 
 const womensClothes = [
   // Coats
@@ -30,6 +36,7 @@ const womensClothes = [
     price: 1500,
     image: winter_coat_black,
     category: ["Coats", "clothing"],
+    categoryImage: coats_category,
     size: ["S", "M", "L"],
     color: ["black", "white", "grey"],
     details:
@@ -41,6 +48,7 @@ const womensClothes = [
     title: "Trench Coat",
     price: 1800,
     image: trench_coat_beige,
+    categoryImage: coats_category,
     category: ["Coats", "clothing"],
     size: ["XS", "S", "M", "L"],
     color: ["beige", "black", "navy"],
@@ -53,6 +61,7 @@ const womensClothes = [
     title: "Puffer Jacket",
     price: 1300,
     image: puffer_jacket_black,
+    categoryImage: coats_category,
     category: ["Coats", "clothing"],
     size: ["S", "M", "L", "XL"],
     color: ["red", "blue", "green"],
@@ -65,6 +74,7 @@ const womensClothes = [
     title: "Wool Peacoat",
     price: 1600,
     image: wool_peacoat_beige,
+    categoryImage: coats_category,
     category: ["Coats", "clothing"],
     size: ["S", "M", "L"],
     color: ["navy", "black", "beige"],
@@ -79,6 +89,7 @@ const womensClothes = [
     title: "Floral Summer Dress",
     price: 850,
     image: floral_summer_dress_red,
+    categoryImage: dress_category,
     category: ["Dresses", "clothing"],
     size: ["XS", "S", "M", "L"],
     color: ["red", "blue", "yellow"],
@@ -91,6 +102,7 @@ const womensClothes = [
     title: "Maxi Dress",
     price: 900,
     image: maxi_dress_white,
+    categoryImage: dress_category,
     category: ["Dresses", "clothing"],
     size: ["S", "M", "L", "XL"],
     color: ["black", "white", "purple"],
@@ -103,6 +115,7 @@ const womensClothes = [
     title: "Wrap Dress",
     price: 950,
     image: wrap_dress_pink,
+    categoryImage: dress_category,
     category: ["Dresses", "clothing"],
     size: ["XS", "S", "M", "L"],
     color: ["pink", "blue", "white"],
@@ -115,6 +128,7 @@ const womensClothes = [
     title: "Bodycon Dress",
     price: 1000,
     image: "https://images.unsplash.com/photo-1521577352947-9bb58764b69a",
+    categoryImage: dress_category,
     category: ["Dresses", "clothing"],
     size: ["S", "M", "L"],
     color: ["black", "red", "navy"],
@@ -129,6 +143,7 @@ const womensClothes = [
     title: "High-Waisted Jeans",
     price: 1100,
     image: high_waisted_jeans_grey,
+    categoryImage: jeans_category,
     category: ["Jeans", "clothing"],
     size: ["S", "M", "L", "XL"],
     color: ["blue", "black"],
@@ -141,6 +156,7 @@ const womensClothes = [
     title: "Skinny Jeans",
     price: 1050,
     image: skinny_jeans_blue,
+    categoryImage: jeans_category,
     category: ["Jeans", "clothing"],
     size: ["XS", "S", "M", "L"],
     color: ["dark blue", "grey", "black"],
@@ -153,6 +169,7 @@ const womensClothes = [
     title: "Boyfriend Jeans",
     price: 1150,
     image: boyfriend_jeans_blue,
+    categoryImage: jeans_category,
     category: ["Jeans", "clothing"],
     size: ["S", "M", "L"],
     color: ["light blue", "distressed"],
@@ -165,6 +182,7 @@ const womensClothes = [
     title: "Bootcut Jeans",
     price: 1200,
     image: bootcut_jeans_blue,
+    categoryImage: jeans_category,
     category: ["Jeans", "clothing"],
     size: ["S", "M", "L"],
     color: ["blue", "black"],
@@ -176,8 +194,9 @@ const womensClothes = [
     id: 13,
     title: "Classic Pumps",
     price: 1200,
+    categoryImage: pumps_category,
     image: classic_pumps_beige,
-    category: ["pumps", "shoes"],
+    category: ["Pumps", "shoes"],
     size: ["36", "37", "38", "39", "40"],
     color: ["black", "beige"],
     details:
@@ -188,8 +207,9 @@ const womensClothes = [
     id: 14,
     title: "Patent Leather Pumps",
     price: 1250,
+    categoryImage: pumps_category,
     image: nude_patent_leather_pumps,
-    category: ["pumps", "shoes"],
+    category: ["Pumps", "shoes"],
     size: ["36", "37", "38", "39", "40"],
     color: ["nude"],
     details:
@@ -200,8 +220,9 @@ const womensClothes = [
     id: 15,
     title: "Suede Pumps",
     price: 1300,
+    categoryImage: pumps_category,
     image: red_suede_pumps,
-    category: ["pumps", "shoes"],
+    category: ["Pumps", "shoes"],
     size: ["36", "37", "38", "39", "40"],
     color: ["red"],
     details:
@@ -212,8 +233,9 @@ const womensClothes = [
     id: 16,
     title: "Metallic Silver Pumps",
     price: 1350,
+    categoryImage: pumps_category,
     image: metallic_silver_pumps,
-    category: ["pumps", "shoes"],
+    category: ["Pumps", "shoes"],
     size: ["36", "37", "38", "39", "40"],
     color: ["silver"],
     details:
@@ -226,8 +248,9 @@ const womensClothes = [
     id: 17,
     title: "Leather Sneakers",
     price: 900,
+    categoryImage: sneakers_category,
     image: leather_sneakers_white,
-    category: ["sneakers", "shoes"],
+    category: ["Sneakers", "shoes"],
     size: ["36", "37", "38", "39", "40", "41"],
     color: ["white"],
     details:
@@ -238,8 +261,9 @@ const womensClothes = [
     id: 18,
     title: "High Top Sneakers",
     price: 950,
+    categoryImage: sneakers_category,
     image: high_top_sneakers_black,
-    category: ["sneakers", "shoes"],
+    category: ["Sneakers", "shoes"],
     size: ["36", "37", "38", "39", "40", "41"],
     color: ["black"],
     details:
@@ -250,8 +274,9 @@ const womensClothes = [
     id: 19,
     title: "Running Shoes",
     price: 980,
+    categoryImage: sneakers_category,
     image: running_shoes_pink,
-    category: ["sneakers", "shoes"],
+    category: ["Sneakers", "shoes"],
     size: ["36", "37", "38", "39", "40", "41"],
     color: ["pink"],
     details:
@@ -262,8 +287,9 @@ const womensClothes = [
     id: 20,
     title: "Slip-On Sneakers",
     price: 920,
+    categoryImage: sneakers_category,
     image: slipon_sneakers_gray,
-    category: ["sneakers", "shoes"],
+    category: ["Sneakers", "shoes"],
     size: ["36", "37", "38", "39", "40", "41"],
     color: ["gray"],
     details:
@@ -276,8 +302,9 @@ const womensClothes = [
     id: 21,
     title: "Ankle Chelsea Boots",
     price: 1500,
+    categoryImage: boots_category,
     image: ankle_chelsea_boots_black,
-    category: ["boots", "shoes"],
+    category: ["Boots", "shoes"],
     size: ["36", "37", "38", "39", "40"],
     color: ["brown", "black"],
     details:
@@ -288,8 +315,9 @@ const womensClothes = [
     id: 22,
     title: "Black Combat Boots",
     price: 1600,
+    categoryImage: boots_category,
     image: black_combat_boots,
-    category: ["boots", "shoes"],
+    category: ["Boots", "shoes"],
     size: ["36", "37", "38", "39", "40"],
     color: ["black"],
     details:
@@ -300,8 +328,9 @@ const womensClothes = [
     id: 23,
     title: "Knee-High Boots",
     price: 1700,
+    categoryImage: boots_category,
     image: knee_high_boots,
-    category: ["boots", "shoes"],
+    category: ["Boots", "shoes"],
     size: ["36", "37", "38", "39", "40"],
     color: ["tan", "black"],
     details:
@@ -312,8 +341,9 @@ const womensClothes = [
     id: 24,
     title: "Heeled Ankle Boots",
     price: 1550,
+    categoryImage: boots_category,
     image: heeled_ankle_boots,
-    category: ["boots", "shoes"],
+    category: ["Boots", "shoes"],
     size: ["36", "37", "38", "39", "40"],
     color: ["beige", "black"],
     details:

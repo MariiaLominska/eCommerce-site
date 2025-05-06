@@ -11,6 +11,12 @@ import NewCollection from "./pages/NewCollection";
 import Cart from "./pages/Cart";
 import AllProducts from "./pages/All Products";
 import ItemPage from "./pages/ItemPage";
+import Coats from "./pages/Coats";
+import Dresses from "./pages/Dresses";
+import Sneakers from "./pages/Sneakers";
+import Jeans from "./pages/Jeans";
+import Pumps from "./pages/Pumps";
+import Boots from "./pages/Boots";
 
 export default function RouterMapping({
   womensClothes,
@@ -101,6 +107,45 @@ export default function RouterMapping({
         }
       />
       <Route
+        path="/coats"
+        element={
+          <Coats
+            womensClothes={womensClothes}
+            favorite={favorite}
+            toggleFavorite={toggleFavorite}
+            searchTerm={searchTerm}
+            cart={cart}
+            setCart={setCart}
+          />
+        }
+      />
+      <Route
+        path="/dresses"
+        element={
+          <Dresses
+            womensClothes={womensClothes}
+            favorite={favorite}
+            toggleFavorite={toggleFavorite}
+            searchTerm={searchTerm}
+            cart={cart}
+            setCart={setCart}
+          />
+        }
+      />
+      <Route
+        path="/jeans"
+        element={
+          <Jeans
+            womensClothes={womensClothes}
+            favorite={favorite}
+            toggleFavorite={toggleFavorite}
+            searchTerm={searchTerm}
+            cart={cart}
+            setCart={setCart}
+          />
+        }
+      />
+      <Route
         path="/shoes"
         element={
           <Shoes
@@ -114,7 +159,46 @@ export default function RouterMapping({
         }
       />
       <Route
-        path="/accesories"
+        path="/sneakers"
+        element={
+          <Sneakers
+            womensClothes={womensClothes}
+            favorite={favorite}
+            toggleFavorite={toggleFavorite}
+            searchTerm={searchTerm}
+            cart={cart}
+            setCart={setCart}
+          />
+        }
+      />
+      <Route
+        path="/pumps"
+        element={
+          <Pumps
+            womensClothes={womensClothes}
+            favorite={favorite}
+            toggleFavorite={toggleFavorite}
+            searchTerm={searchTerm}
+            cart={cart}
+            setCart={setCart}
+          />
+        }
+      />
+      <Route
+        path="/boots"
+        element={
+          <Boots
+            womensClothes={womensClothes}
+            favorite={favorite}
+            toggleFavorite={toggleFavorite}
+            searchTerm={searchTerm}
+            cart={cart}
+            setCart={setCart}
+          />
+        }
+      />
+      <Route
+        path="/accessories"
         element={
           <Accessories
             womensClothes={womensClothes}
