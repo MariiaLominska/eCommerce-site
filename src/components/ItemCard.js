@@ -43,7 +43,10 @@ function ItemCard({
             deleteFromCart();
           }}
         >
-          <img src={trash} alt="delete from cart"></img>
+          {" "}
+          <div className="delete-from-cart-button-img-wrapper">
+            <img src={trash} alt="delete from cart"></img>
+          </div>
         </button>
       )}
       <label

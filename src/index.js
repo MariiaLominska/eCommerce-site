@@ -33,16 +33,22 @@ export default function App() {
   const [cart, setCart] = useState({});
   const amountCart = Object.keys(cart).length;
 
+  // бургер меню для мобильных устройств
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const toggleBurgerMenu = () => setMenuIsOpen(!menuIsOpen);
+
   return (
     <BrowserRouter>
       <div className="App">
-        <Sidebar />
+        <Sidebar menuIsOpen={menuIsOpen} toggleBurgerMenu={toggleBurgerMenu} />
         <div className="main">
           <Header
             searchTerm={searchTerm}
             handleSearchChange={setSearchTerm}
             amountFavorite={amountFavorite}
             amountCart={amountCart}
+            menuIsOpen={menuIsOpen}
+            toggleBurgerMenu={toggleBurgerMenu}
           />
           <RouterMapping
             womensClothes={womensClothes}

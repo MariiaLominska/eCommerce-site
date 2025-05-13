@@ -11,6 +11,8 @@ export default function Header({
   handleSearchChange,
   amountFavorite,
   amountCart,
+  menuIsOpen,
+  toggleBurgerMenu,
 }) {
   // попап закрывается, переписывая стейт поиска, чтобы, когда ничего в поиске не введено, и попапа не было
   const closePopup = () => {
@@ -33,11 +35,20 @@ export default function Header({
 
   return (
     <header className="header">
+      <div
+        className={menuIsOpen ? "burger-menu-closed" : "burger-menu"}
+        onClick={toggleBurgerMenu}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
       <form className="search">
-        <label className="search-label">
+        <label className="search-label" htmlFor="search-input">
           <img className="search-icon" src={search} alt="Search" />
           <div className="search-wrapper">
             <input
+              id="search-input"
               className="search-input"
               type="text"
               placeholder="Search store"
@@ -71,30 +82,35 @@ export default function Header({
             <Link to="/packaging">packaging</Link>
           </li>
         </ul>
+
+        <ul className="nav-icons-list">
+          <li className="nav-header-link-icon">
+            <Link to="/favorites">
+              {!!amountFavorite && (
+                <span className="items-count">{amountFavorite}</span>
+              )}
+              <img src={heart} alt="Favorites" />
+            </Link>
+          </li>
+          <li className="nav-header-link-icon">
+            <Link to="/cart">
+              {amountCart > 0 && (
+                <span className="items-count">{amountCart}</span>
+              )}
+              <img className="nav-header-basket-img" src={basket} alt="Cart" />
+            </Link>
+          </li>
+          <li className="nav-header-link-icon">
+            <Link to="/profile">
+              <img
+                className="nav-header-profile-img"
+                src={person}
+                alt="Profile"
+              />
+            </Link>
+          </li>
+        </ul>
       </nav>
-      <ul className="nav-icons-list">
-        <li className="nav-header-link-icon">
-          <Link to="/favorites">
-            {!!amountFavorite && (
-              <span className="items-count">{amountFavorite}</span>
-            )}
-            <img src={heart} alt="Favorites" />
-          </Link>
-        </li>
-        <li className="nav-header-link-icon">
-          <Link to="/cart">
-            {amountCart > 0 && (
-              <span className="items-count">{amountCart}</span>
-            )}
-            <img src={basket} alt="Cart" />
-          </Link>
-        </li>
-        <li className="nav-header-link-icon">
-          <Link to="/profile">
-            <img src={person} alt="Profile" />
-          </Link>
-        </li>
-      </ul>
     </header>
   );
 }
