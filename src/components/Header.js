@@ -2,7 +2,7 @@ import search from "../images/search.svg";
 import basket from "../images/icons/basket.svg";
 import person from "../images/icons/person.svg";
 import heart from "../images/icons/heart.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SearchPopupItem from "./SearchPopupItem";
 import womensClothes from "../data/data";
 
@@ -12,7 +12,8 @@ export default function Header({
   amountFavorite,
   amountCart,
   menuIsOpen,
-  toggleBurgerMenu,
+  openBurgerMenu,
+  closeBurgerMenu,
 }) {
   // попап закрывается, переписывая стейт поиска, чтобы, когда ничего в поиске не введено, и попапа не было
   const closePopup = () => {
@@ -33,12 +34,16 @@ export default function Header({
     filteredItems.push({ ...filteredByCategory, isCategory: true });
   }
 
+  // получаем адрес страницы из url
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  // меню навигации
+  const navList = ["products", "story", "manufacturing", "packaging"];
+  console.log(currentPath);
   return (
     <header className="header">
-      <div
-        className={menuIsOpen ? "burger-menu-closed" : "burger-menu"}
-        onClick={toggleBurgerMenu}
-      >
+      <div className="burger-menu" onClick={openBurgerMenu}>
         <span></span>
         <span></span>
         <span></span>
@@ -69,18 +74,19 @@ export default function Header({
       </form>
       <nav className="nav-header">
         <ul className="nav-header-list">
-          <li className="nav-header-link-text active">
-            <Link to="/products">products</Link>
-          </li>
-          <li className="nav-header-link-text">
-            <Link to="/story">story</Link>
-          </li>
-          <li className="nav-header-link-text">
-            <Link to="/manufacturing">manufacturing</Link>
-          </li>
-          <li className="nav-header-link-text">
-            <Link to="/packaging">packaging</Link>
-          </li>
+          {navList.map((nav) => {
+            return (
+              // навешиваем дополнительный класс active если адрес страницы совпадает с ссылкой в
+              // меню навигации (добавляем / и + для сравнения, это строка)
+              <li
+                className={`nav-header-link-text ${
+                  currentPath == "/" + nav && "nav-header-link-text-active"
+                }`}
+              >
+                <Link to={nav}>{nav}</Link>
+              </li>
+            );
+          })}
         </ul>
 
         <ul className="nav-icons-list">

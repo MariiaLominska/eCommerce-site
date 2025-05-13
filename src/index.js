@@ -35,12 +35,18 @@ export default function App() {
 
   // бургер меню для мобильных устройств
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const toggleBurgerMenu = () => setMenuIsOpen(!menuIsOpen);
+
+  const openBurgerMenu = () => setMenuIsOpen(true);
+  const closeBurgerMenu = () => setMenuIsOpen(false);
 
   return (
     <BrowserRouter>
       <div className="App">
-        <Sidebar menuIsOpen={menuIsOpen} toggleBurgerMenu={toggleBurgerMenu} />
+        <Sidebar
+          menuIsOpen={menuIsOpen}
+          openBurgerMenu={openBurgerMenu}
+          closeBurgerMenu={closeBurgerMenu}
+        />
         <div className="main">
           <Header
             searchTerm={searchTerm}
@@ -48,7 +54,8 @@ export default function App() {
             amountFavorite={amountFavorite}
             amountCart={amountCart}
             menuIsOpen={menuIsOpen}
-            toggleBurgerMenu={toggleBurgerMenu}
+            openBurgerMenu={openBurgerMenu}
+            closeBurgerMenu={closeBurgerMenu}
           />
           <RouterMapping
             womensClothes={womensClothes}

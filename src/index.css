@@ -71,11 +71,11 @@ html {
 /* Sidebar */
 
 .close-sidebar {
-  visibility: hidden;
+  display: none;
 }
 
 .burger-menu {
-  visibility: hidden;
+  display: none;
 }
 
 .sidebar {
@@ -329,15 +329,8 @@ html {
   width: 100%;
 }
 
-.nav-header-link-text.active::after {
-  position: absolute;
-  left: 0;
+.nav-header-link-text-active::after {
   width: 100%;
-  bottom: -9px;
-  content: "";
-  display: block;
-  height: 2px;
-  background-color: #444;
 }
 
 .nav-header-link-text + .nav-header-link-text {
@@ -1255,13 +1248,13 @@ legend {
   }
 
   .close-sidebar {
-    visibility: visible;
+    display: block;
     position: absolute;
-    left: 90%;
-    top: 1%;
+    left: 85%;
+    top: 3%;
     background: transparent;
     border: none;
-    font-size: 24px;
+    font-size: 20px;
     cursor: pointer;
     z-index: 1001;
     color: #1a1a1a;
@@ -1269,16 +1262,12 @@ legend {
   }
 
   .burger-menu {
-    visibility: visible;
+    display: block;
     width: 30px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     gap: 5px;
-  }
-
-  .burger-menu-closed {
-    display: none;
   }
 
   .burger-menu span {
@@ -1289,7 +1278,7 @@ legend {
   }
 
   .sidebar {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     transform: translateX(-100%);
@@ -1298,7 +1287,6 @@ legend {
   .sidebar-active {
     height: 100vh;
     width: 250px;
-    position: fixed;
     transform: translateX(0%);
     transition: transform 0.3s ease;
     z-index: 20;
@@ -1422,13 +1410,13 @@ legend {
   .favorites-title {
     display: flex;
     justify-content: center;
-    margin: 0 20px;
+    margin: 10px 20px 0 20px;
   }
 
   .cart-title {
     display: flex;
     justify-content: center;
-    margin: 0 20px;
+    margin: 10px 20px 0 20px;
   }
 
   .item-page-fav-btn svg {
