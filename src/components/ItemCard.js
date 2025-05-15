@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import trash from "../images/icons/trash.svg";
 import { Link } from "react-router-dom";
 

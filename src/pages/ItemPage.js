@@ -1,17 +1,17 @@
-import { useSearchParams, useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 
 export default function ItemPage({
   womensClothes,
   favorite,
   toggleFavorite,
-  searchTerm,
   cart,
   setCart,
 }) {
-  const [searchParams] = useSearchParams();
+  // стейт для получения/изменения информации из URL, это объект
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  // вытягиваем из URL страницы данные
+  // вытягиваем из URL страницы данные (/product/Winter%20Coat?id=1&color=black&size=S)
   const currentId = searchParams.get("id");
   const currentColor = searchParams.get("color");
   const currentSize = searchParams.get("size");
@@ -23,19 +23,32 @@ export default function ItemPage({
   const { title, price, size, details, image, category, color, materials, id } =
     currentItem;
 
-  const { productId } = useParams();
-
   // начальный стейт - цвет из URL
   const [colorChange, setColorChange] = useState(currentColor);
 
+  // изменение и цвета товара, и цвета в URL
   const handleColorChange = (e) => {
-    setColorChange(e.target.value);
+    const chosenColor = e.target.value;
+    setColorChange(chosenColor);
+
+    setSearchParams((prev) => {
+      const newParams = new URLSearchParams(prev);
+      newParams.set("color", chosenColor);
+      return newParams;
+    });
   };
 
   const [sizeChange, setSizeChange] = useState(currentSize);
 
   const handleSizeChange = (e) => {
-    setSizeChange(e.target.value);
+    const chosenSize = e.target.value;
+    setSizeChange(chosenSize);
+
+    setSearchParams((prev) => {
+      const newParams = new URLSearchParams(prev);
+      newParams.set("size", chosenSize);
+      return newParams;
+    });
   };
 
   const [amountChange, setAmountChange] = useState(1);
@@ -149,7 +162,7 @@ export default function ItemPage({
                   title,
                   price,
                   size: sizeChange,
-                  color: colorChange,
+                  color: `${colorChange ? colorChange : currentColor}`,
                   amount: amountChange,
                 },
               };

@@ -38,9 +38,9 @@ export default function Header({
   const location = useLocation();
   const currentPath = location.pathname;
 
-  // меню навигации
+  // генерация меню навигации
   const navList = ["products", "story", "manufacturing", "packaging"];
-  console.log(currentPath);
+
   return (
     <header className="header">
       <div className="burger-menu" onClick={openBurgerMenu}>

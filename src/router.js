@@ -36,7 +36,6 @@ export default function RouterMapping({
             womensClothes={womensClothes}
             favorite={favorite}
             toggleFavorite={toggleFavorite}
-            searchTerm={searchTerm}
             cart={cart}
             setCart={setCart}
           />
