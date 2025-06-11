@@ -1,15 +1,12 @@
 import OrderWrapper from "../components/OrderWrapper";
-import ItemsGrid from "../components/ItemsGrid";
-
+import CartItem from "../components/CartItem";
+import { useSelector } from "react-redux";
 import data from "../data/data";
 
-export default function Cart({
-  cart,
-  setCart,
-  favorite,
-  toggleFavorite,
-  searchTerm,
-}) {
+export default function Cart() {
+  const cart = useSelector((state) => state.cartReducer);
+  const searchTerm = useSelector((state) => state.searchTermReducer);
+
   const cartedItems = data.filter(
     (item) =>
       cart[item.id] &&
@@ -28,16 +25,13 @@ export default function Cart({
         )}
       </div>
 
-      <ItemsGrid
-        womensClothes={cartedItems}
-        favorite={favorite}
-        toggleFavorite={toggleFavorite}
-        cart={cart}
-        setCart={setCart}
-        // inCart - карточка добавлена в карт, у нее будет рисоваться
-        // крестик для удаления ее из cart
-        inCart={true}
-      />
+      {Object.keys(cart).length >= 1 && (
+        <div className="products-box">
+          {cartedItems.map((cartedItem) => {
+            return <CartItem cartedItem={cartedItem} />;
+          })}
+        </div>
+      )}
       {Object.keys(cart).length >= 1 && (
         <OrderWrapper cart={cart}></OrderWrapper>
       )}

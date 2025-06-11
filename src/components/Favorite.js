@@ -1,13 +1,11 @@
 import womensClothes from "../data/data";
 import ItemsGrid from "./ItemsGrid";
+import { useSelector } from "react-redux";
 
-export default function Favorite({
-  favorite,
-  toggleFavorite,
-  cart,
-  setCart,
-  searchTerm,
-}) {
+export default function Favorite() {
+  const favorite = useSelector((state) => state.favoriteReducer.favorite);
+  const searchTerm = useSelector((state) => state.searchTermReducer);
+
   const favoritedItems = womensClothes.filter(
     (item) =>
       favorite.includes(item.id) &&
@@ -26,14 +24,7 @@ export default function Favorite({
         )}
       </div>
 
-      <ItemsGrid
-        womensClothes={favoritedItems}
-        favorite={favorite}
-        toggleFavorite={toggleFavorite}
-        cart={cart}
-        setCart={setCart}
-        searchTerm={searchTerm}
-      />
+      <ItemsGrid womensClothes={favoritedItems} searchTerm={searchTerm} />
     </div>
   );
 }

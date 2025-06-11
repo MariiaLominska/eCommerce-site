@@ -3,21 +3,22 @@ import basket from "../images/icons/basket.svg";
 import person from "../images/icons/person.svg";
 import heart from "../images/icons/heart.svg";
 import { Link, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import SearchPopupItem from "./SearchPopupItem";
 import womensClothes from "../data/data";
 
-export default function Header({
-  searchTerm,
-  handleSearchChange,
-  amountFavorite,
-  amountCart,
-  menuIsOpen,
-  openBurgerMenu,
-  closeBurgerMenu,
-}) {
+export default function Header({ openBurgerMenu }) {
+  const dispatch = useDispatch();
+
+  const searchTerm = useSelector((state) => state.searchTermReducer);
+
+  const handleSearchChange = (e) => {
+    dispatch({ type: "writeDownSearchTerm", payload: e.target.value });
+  };
+
   // попап закрывается, переписывая стейт поиска, чтобы, когда ничего в поиске не введено, и попапа не было
   const closePopup = () => {
-    handleSearchChange("");
+    dispatch({ type: "writeDownSearchTerm", payload: "" });
   };
 
   const filteredByCategory = womensClothes.find((item) =>
@@ -41,6 +42,13 @@ export default function Header({
   // генерация меню навигации
   const navList = ["products", "story", "manufacturing", "packaging"];
 
+  // получаем состояние с помощью хука
+  const favorite = useSelector((state) => state.favoriteReducer.favorite);
+  const amountFavorite = favorite.length;
+
+  const cart = useSelector((state) => state.cartReducer);
+  const amountCart = Object.keys(cart).length;
+
   return (
     <header className="header">
       <div className="burger-menu" onClick={openBurgerMenu}>
@@ -61,13 +69,12 @@ export default function Header({
               // если из-за попапа searchTerm становится строкой, в инпуте изменение стейта не срабыватывает,
               // потому что инпут ждет ивент, а не строку, так что нужно в onChange вызвать функцию, сразу
               // передавая ей ивент
-              onChange={(e) => handleSearchChange(e.target.value)}
+              onChange={handleSearchChange}
             />
             <SearchPopupItem
               womensClothes={filteredItems}
               isOpenPopup={searchTerm}
               closePopup={closePopup}
-              searchTerm={searchTerm}
             />
           </div>
         </label>

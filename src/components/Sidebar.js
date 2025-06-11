@@ -6,13 +6,22 @@ import bag from "../images/nav-icons/case.png";
 import acrobat from "../images/nav-icons/acrobat.png";
 import gift from "../images/nav-icons/gift.png";
 import diamond from "../images/nav-icons/diamond.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-export default function Sidebar({
-  menuIsOpen,
-  openBurgerMenu,
-  closeBurgerMenu,
-}) {
+export default function Sidebar({ menuIsOpen, closeBurgerMenu }) {
+  // получаем адрес страницы из url
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const sidebarNavList = [
+    { name: "New In", image: flash, path: "/new-in" },
+    { name: "Clothing", image: clothing, path: "/clothing" },
+    { name: "Shoes", image: shoes, path: "/shoes" },
+    { name: "Accessories", image: bag, path: "/accessories" },
+    { name: "Activewear", image: acrobat, path: "/activewear" },
+    { name: "Gifts & Living", image: gift, path: "/gifts-living" },
+    { name: "Inspiration", image: diamond, path: "/inspiration" },
+  ];
   return (
     <>
       <div
@@ -31,55 +40,39 @@ export default function Sidebar({
           </div>
         </div>
 
-        <nav className="sidebar-nav nav">
+        <nav className="sidebar-nav">
           <Link to="/products">
             <h2 className="nav-title" onClick={closeBurgerMenu}>
               Explore
             </h2>
           </Link>
           <ul className="nav-list">
-            <li>
-              <Link to="/newcollection" onClick={closeBurgerMenu}>
-                <img src={flash} alt="New Collection" />
-                New In
-              </Link>
-            </li>
-            <li>
-              <Link to="/clothing" onClick={closeBurgerMenu}>
-                <img src={clothing} alt="Clothing" />
-                Clothing
-              </Link>
-            </li>
-            <li>
-              <Link to="/shoes" onClick={closeBurgerMenu}>
-                <img src={shoes} alt="Shoes" />
-                Shoes
-              </Link>
-            </li>
-            <li>
-              <Link to="/accessories" onClick={closeBurgerMenu}>
-                <img src={bag} alt="Accesories" />
-                Accessories
-              </Link>
-            </li>
-            <li>
-              <Link to="/activewear" onClick={closeBurgerMenu}>
-                <img src={acrobat} alt="Activewear" />
-                Activewear
-              </Link>
-            </li>
-            <li>
-              <Link to="/gifts&living" onClick={closeBurgerMenu}>
-                <img src={gift} alt="Gifts & Livivng" />
-                Gifts & Living
-              </Link>
-            </li>
-            <li>
-              <Link to="/inspiration" onClick={closeBurgerMenu}>
-                <img src={diamond} alt="Inspiration" />
-                Inspiration
-              </Link>
-            </li>
+            {sidebarNavList.map(({ name, image, path }) => {
+              return (
+                // навешиваем дополнительный класс active если адрес страницы совпадает с ссылкой в
+                // меню навигации (добавляем / и + для сравнения, это строка)
+                <li
+                  key={name}
+                  className={"sidebar-nav-item"}
+                  onClick={closeBurgerMenu}
+                >
+                  <Link
+                    to={path}
+                    onClick={closeBurgerMenu}
+                    className={"sidebar-nav-item-a"}
+                  >
+                    <img src={image} alt={name} />{" "}
+                    <span
+                      className={`sidebar-nav-item-a-text ${
+                        currentPath === path && "sidebar-nav-item-a-text-active"
+                      }`}
+                    >
+                      {name}
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </div>

@@ -1,13 +1,17 @@
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import womensClothes from "../data/data";
 
-export default function ItemPage({
-  womensClothes,
-  favorite,
-  toggleFavorite,
-  cart,
-  setCart,
-}) {
+export default function ItemPage() {
+  const dispatch = useDispatch();
+
+  const toggleFavorite = (itemId) => {
+    dispatch({ type: "favorite", payload: itemId });
+  };
+
+  const cart = useSelector((state) => state.cartReducer);
+
   // стейт для получения/изменения информации из URL, это объект
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -20,30 +24,27 @@ export default function ItemPage({
     return item.id == currentId;
   });
 
-  const { title, price, size, details, image, category, color, materials, id } =
+  const { title, price, size, details, image, color, materials, id } =
     currentItem;
 
-  // начальный стейт - цвет из URL
   const [colorChange, setColorChange] = useState(currentColor);
+  const [sizeChange, setSizeChange] = useState(currentSize);
+  const [amountChange, setAmountChange] = useState(1);
 
   // изменение и цвета товара, и цвета в URL
   const handleColorChange = (e) => {
-    const chosenColor = e.target.value;
-    setColorChange(chosenColor);
-
     setSearchParams((prev) => {
+      const chosenColor = e.target.value;
+      setColorChange(chosenColor);
       const newParams = new URLSearchParams(prev);
       newParams.set("color", chosenColor);
       return newParams;
     });
   };
 
-  const [sizeChange, setSizeChange] = useState(currentSize);
-
   const handleSizeChange = (e) => {
     const chosenSize = e.target.value;
     setSizeChange(chosenSize);
-
     setSearchParams((prev) => {
       const newParams = new URLSearchParams(prev);
       newParams.set("size", chosenSize);
@@ -51,11 +52,13 @@ export default function ItemPage({
     });
   };
 
-  const [amountChange, setAmountChange] = useState(1);
-
   const handleAmountChange = (e) => {
     setAmountChange(e.target.value);
   };
+
+  // получаем состояние с помощью хука, параметром принимает функцию, а она
+  // принимает уже состояние, из нее получаем переменную
+  const favorite = useSelector((state) => state.favoriteReducer.favorite);
 
   const isCarted = cart[currentId];
   const isFavorited = favorite.includes(id);
@@ -64,9 +67,10 @@ export default function ItemPage({
 
   // для кнопки заказа - она Disabled если цвет, размер и количество товара в корзине соответствует стейтам
   // цвета, размера и количества
+
   const isDisabled =
-    cart[id]?.color === colorChange &&
-    cart[id]?.size === sizeChange &&
+    cart[id]?.color == colorChange &&
+    cart[id]?.size == sizeChange &&
     cart[id]?.amount === amountChange;
 
   return (
@@ -151,21 +155,17 @@ export default function ItemPage({
         <button
           className="add-to-cart-button item-page-add-to-cart-button"
           disabled={isDisabled}
-          onClick={(e) => {
-            console.log("click");
-            // меняется стейт корзины, возвращается старый стейт + id и количество товаров, которое добавили,
-            // нажав на кнопку
-            setCart((prev) => {
-              return {
-                ...prev,
-                [id]: {
-                  title,
-                  price,
-                  size: sizeChange,
-                  color: `${colorChange ? colorChange : currentColor}`,
-                  amount: amountChange,
-                },
-              };
+          onClick={() => {
+            dispatch({
+              type: "addToCart",
+              payload: {
+                id,
+                title,
+                price,
+                size: `${sizeChange ? sizeChange : currentSize}`,
+                color: `${colorChange ? colorChange : currentColor}`,
+                amount: amountChange,
+              },
             });
           }}
         >

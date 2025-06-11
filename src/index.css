@@ -79,8 +79,9 @@ html {
 }
 
 .sidebar {
-  padding: 35px 30px 0 30px;
-  margin-right: 20px;
+  padding: 35px 0 0 30px;
+  margin: 0 40px 0 20px;
+  width: 200px;
 }
 
 .sidebar-logo {
@@ -90,6 +91,27 @@ html {
 .sidebar-nav {
   display: flex;
   flex-direction: column;
+}
+
+.sidebar-nav-item-a-text {
+  position: relative;
+}
+
+.sidebar-nav-item-a-text::after {
+  position: absolute;
+  left: 0%;
+  width: 0%;
+  bottom: -9px;
+  content: "";
+  display: block;
+  height: 2px;
+  background-color: #444;
+  transition: width 0.2s ease-in;
+}
+
+.sidebar-nav-item-a-text:hover::after,
+.sidebar-nav-item-a-text-active::after {
+  width: 100%;
 }
 
 /* Nav */
@@ -157,7 +179,6 @@ html {
 
 .search-wrapper {
   position: relative;
-  /* width: 100%; */
   max-height: 350px;
   display: flex;
   align-items: center;
@@ -814,8 +835,8 @@ html {
 }
 
 .delete-from-cart-button-img-wrapper {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 .delete-from-cart-button img {
@@ -912,13 +933,6 @@ a:focus,
 a:active {
   outline: none;
 }
-
-/* Common */
-/* aside,
-nav,
-section {
-  display: block;
-} */
 
 h1,
 h2,

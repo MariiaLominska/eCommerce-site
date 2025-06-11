@@ -18,235 +18,39 @@ import Jeans from "./pages/Jeans";
 import Pumps from "./pages/Pumps";
 import Boots from "./pages/Boots";
 
-export default function RouterMapping({
-  womensClothes,
-  favorite,
-  toggleFavorite,
-  searchTerm,
-  cart,
-  setCart,
-}) {
+export default function RouterMapping({ searchTerm }) {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route
-        path="/product/:productId"
-        element={
-          <ItemPage
-            womensClothes={womensClothes}
-            favorite={favorite}
-            toggleFavorite={toggleFavorite}
-            cart={cart}
-            setCart={setCart}
-          />
-        }
-      />
-      <Route
-        path="/products"
-        element={
-          <AllProducts
-            womensClothes={womensClothes}
-            favorite={favorite}
-            toggleFavorite={toggleFavorite}
-            searchTerm={searchTerm}
-            cart={cart}
-            setCart={setCart}
-          ></AllProducts>
-        }
-      />
-      <Route
-        path="/favorites"
-        element={
-          <Favorite
-            favorite={favorite}
-            toggleFavorite={toggleFavorite}
-            cart={cart}
-            setCart={setCart}
-            searchTerm={searchTerm}
-          />
-        }
-      ></Route>
-      <Route
-        path="/cart"
-        element={
-          <Cart
-            cart={cart}
-            setCart={setCart}
-            favorite={favorite}
-            toggleFavorite={toggleFavorite}
-            searchTerm={searchTerm}
-          />
-        }
-      ></Route>
-      <Route
-        path="/newcollection"
-        element={
-          <NewCollection
-            womensClothes={womensClothes}
-            favorite={favorite}
-            toggleFavorite={toggleFavorite}
-            searchTerm={searchTerm}
-            cart={cart}
-            setCart={setCart}
-          />
-        }
-      />
+      <Route path="/product/:productId" element={<ItemPage />} />
+      <Route path="/products" element={<AllProducts></AllProducts>} />
+      <Route path="/favorites" element={<Favorite />}></Route>
+      <Route path="/cart" element={<Cart />}></Route>
+      <Route path="/new-in" element={<NewCollection />} />
 
-      <Route
-        path="/clothing"
-        element={
-          <Clothing
-            womensClothes={womensClothes}
-            favorite={favorite}
-            toggleFavorite={toggleFavorite}
-            searchTerm={searchTerm}
-            cart={cart}
-            setCart={setCart}
-          />
-        }
-      />
-      <Route
-        path="/coats"
-        element={
-          <Coats
-            womensClothes={womensClothes}
-            favorite={favorite}
-            toggleFavorite={toggleFavorite}
-            searchTerm={searchTerm}
-            cart={cart}
-            setCart={setCart}
-          />
-        }
-      />
-      <Route
-        path="/dresses"
-        element={
-          <Dresses
-            womensClothes={womensClothes}
-            favorite={favorite}
-            toggleFavorite={toggleFavorite}
-            searchTerm={searchTerm}
-            cart={cart}
-            setCart={setCart}
-          />
-        }
-      />
-      <Route
-        path="/jeans"
-        element={
-          <Jeans
-            womensClothes={womensClothes}
-            favorite={favorite}
-            toggleFavorite={toggleFavorite}
-            searchTerm={searchTerm}
-            cart={cart}
-            setCart={setCart}
-          />
-        }
-      />
-      <Route
-        path="/shoes"
-        element={
-          <Shoes
-            womensClothes={womensClothes}
-            favorite={favorite}
-            toggleFavorite={toggleFavorite}
-            searchTerm={searchTerm}
-            cart={cart}
-            setCart={setCart}
-          />
-        }
-      />
-      <Route
-        path="/sneakers"
-        element={
-          <Sneakers
-            womensClothes={womensClothes}
-            favorite={favorite}
-            toggleFavorite={toggleFavorite}
-            searchTerm={searchTerm}
-            cart={cart}
-            setCart={setCart}
-          />
-        }
-      />
-      <Route
-        path="/pumps"
-        element={
-          <Pumps
-            womensClothes={womensClothes}
-            favorite={favorite}
-            toggleFavorite={toggleFavorite}
-            searchTerm={searchTerm}
-            cart={cart}
-            setCart={setCart}
-          />
-        }
-      />
-      <Route
-        path="/boots"
-        element={
-          <Boots
-            womensClothes={womensClothes}
-            favorite={favorite}
-            toggleFavorite={toggleFavorite}
-            searchTerm={searchTerm}
-            cart={cart}
-            setCart={setCart}
-          />
-        }
-      />
+      <Route path="/clothing" element={<Clothing />} />
+      <Route path="/coats" element={<Coats />} />
+      <Route path="/dresses" element={<Dresses />} />
+      <Route path="/jeans" element={<Jeans />} />
+      <Route path="/shoes" element={<Shoes />} />
+      <Route path="/sneakers" element={<Sneakers />} />
+      <Route path="/pumps" element={<Pumps />} />
+      <Route path="/boots" element={<Boots />} />
       <Route
         path="/accessories"
-        element={
-          <Accessories
-            womensClothes={womensClothes}
-            favorite={favorite}
-            toggleFavorite={toggleFavorite}
-            searchTerm={searchTerm}
-            cart={cart}
-            setCart={setCart}
-          />
-        }
+        element={<Accessories searchTerm={searchTerm} />}
       />
       <Route
         path="/activewear"
-        element={
-          <ActiveWear
-            womensClothes={womensClothes}
-            favorite={favorite}
-            toggleFavorite={toggleFavorite}
-            searchTerm={searchTerm}
-            cart={cart}
-            setCart={setCart}
-          />
-        }
+        element={<ActiveWear searchTerm={searchTerm} />}
       />
       <Route
-        path="/gifts&living"
-        element={
-          <GiftsAndLiving
-            womensClothes={womensClothes}
-            favorite={favorite}
-            toggleFavorite={toggleFavorite}
-            searchTerm={searchTerm}
-            cart={cart}
-            setCart={setCart}
-          />
-        }
+        path="/gifts-living"
+        element={<GiftsAndLiving searchTerm={searchTerm} />}
       />
       <Route
         path="inspiration"
-        element={
-          <Inspiration
-            womensClothes={womensClothes}
-            favorite={favorite}
-            toggleFavorite={toggleFavorite}
-            searchTerm={searchTerm}
-            cart={cart}
-            setCart={setCart}
-          />
-        }
+        element={<Inspiration searchTerm={searchTerm} />}
       />
     </Routes>
   );

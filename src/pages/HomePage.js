@@ -50,7 +50,7 @@ export default function CardWrapper() {
 
       <div className="cards-wrapper-row">
         <div className="cards-wrapper-col col-horizontal">
-          <Link to="/gifts&living">
+          <Link to="/gifts-living">
             <div className="card card-vertical card-product">
               <p className="card-vertical-title">Gifts & Living</p>
               <div className="card-product-link">
@@ -77,7 +77,7 @@ export default function CardWrapper() {
               A collection of most trending items.
             </p>
           </div>
-          <Link to="/newcollection">
+          <Link to="/new-in">
             <div className="card card-horizontal card-section card-section-red">
               <h4 className="card-section-title">Buy it for the first time</h4>
               <p className="card-section-desc">

@@ -1,24 +1,13 @@
 import ItemsGrid from "../components/ItemsGrid";
+import womensClothes from "../data/data";
+import { useSelector } from "react-redux";
 
-export default function AllProducts({
-  womensClothes,
-  favorite,
-  toggleFavorite,
-  searchTerm,
-  cart,
-  setCart,
-}) {
+export default function AllProducts() {
+  const searchTerm = useSelector((state) => state.searchTermReducer);
+
   const filteredItems = womensClothes.filter(
     (item) =>
       item && item.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  return (
-    <ItemsGrid
-      womensClothes={filteredItems}
-      favorite={favorite}
-      toggleFavorite={toggleFavorite}
-      cart={cart}
-      setCart={setCart}
-    />
-  );
+  return <ItemsGrid womensClothes={filteredItems} />;
 }
