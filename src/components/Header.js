@@ -47,6 +47,8 @@ export default function Header({ openBurgerMenu }) {
   const amountFavorite = favorite.length;
 
   const cart = useSelector((state) => state.cartReducer);
+  // const cartString = localStorage.getItem("cart");
+  // const cart = JSON.parse(cartString) || {};
   const amountCart = Object.keys(cart).length;
 
   return (

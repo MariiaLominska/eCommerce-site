@@ -5,6 +5,8 @@ import data from "../data/data";
 
 export default function Cart() {
   const cart = useSelector((state) => state.cartReducer);
+  // const cartString = localStorage.getItem("cart");
+  // const cart = JSON.parse(cartString) || {};
   const searchTerm = useSelector((state) => state.searchTermReducer);
 
   const cartedItems = data.filter(
@@ -12,6 +14,7 @@ export default function Cart() {
       cart[item.id] &&
       item.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   return (
     <div>
       <div className="cart-title">

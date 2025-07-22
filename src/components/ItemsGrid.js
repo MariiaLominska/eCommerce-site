@@ -1,6 +1,6 @@
 import ItemCard from "./ItemCard";
 
-export default function ItemsGrid({ womensClothes, searchTerm }) {
+export default function ItemsGrid({ womensClothes }) {
   return (
     <div className="products-box">
       {womensClothes.map(({ title, price, size, image, color, id }) => {

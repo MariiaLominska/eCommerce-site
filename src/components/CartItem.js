@@ -12,6 +12,8 @@ function CartItem({ cartedItem }) {
   };
 
   const cart = useSelector((state) => state.cartReducer);
+  // const cartString = localStorage.getItem("cart");
+  // const cart = JSON.parse(cartString) || {};
 
   const deleteFromCart = () => {
     dispatch({ type: "deleteFromCart", payload: { id } });

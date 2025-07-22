@@ -14,13 +14,19 @@ import cartReducer from "./states/cartReducer";
 import searchTermReducer from "./states/searchTermReducer";
 
 const rootReducer = combineReducers({
-  favoriteReducer,
   cartReducer,
+  favoriteReducer,
   searchTermReducer,
 });
 
 // передаем функцию редюсер стору, а стор передаем провайдеру из модуля react-redux
 const store = createStore(rootReducer);
+
+// подписка на изменения cart
+store.subscribe(() => {
+  const cart = store.getState().cartReducer;
+  localStorage.setItem("cart", JSON.stringify(cart));
+});
 
 export default function App() {
   // создаем диспатч для редукс с помощью хука
